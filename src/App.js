@@ -112,22 +112,28 @@ export default function App() {
         </button>
       </p>
       <p>
-        <button onClick={handleDeposit} disabled={!isActive}>
+        <button onClick={handleDeposit} disabled={!isActive || !isActive}>
           Deposit 150
         </button>
       </p>
       <p>
-        <button onClick={handleWithdraw} disabled={!isActive}>
+        <button onClick={handleWithdraw} disabled={balance === 0 || !isActive}>
           Withdraw 50
         </button>
       </p>
       <p>
-        <button onClick={handleRequestLoan} disabled={!isActive}>
+        <button
+          onClick={handleRequestLoan}
+          disabled={isLoanRequested || !isActive}
+        >
           Request a loan of 5000
         </button>
       </p>
       <p>
-        <button onClick={handlePayLoan} disabled={!isActive}>
+        <button
+          onClick={handlePayLoan}
+          disabled={!isLoanRequested || !isActive}
+        >
           Pay loan
         </button>
       </p>
