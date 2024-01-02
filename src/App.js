@@ -38,12 +38,30 @@ function reducer(state, action) {
   }
   switch (action.type) {
     case "openAccount":
-      return { ...state, balance: 500, isActive: true };
+      return { ...state, balance: 500, isActive: true, isLoanRequested: false };
     case "deposit":
       return { ...state, balance: state.balance + 150 };
     case "withdraw":
       if (state.balance > 0) {
         return { ...state, balance: state.balance - 50 };
+      }
+      return { ...state };
+    case "requestLoan":
+      if (!state.isLoanRequested) {
+        return {
+          ...state,
+          balance: state.balance + 5000,
+          isLoanRequested: true,
+        };
+      }
+      return { ...state };
+    case "payLoan":
+      if (state.isLoanRequested) {
+        return {
+          ...state,
+          balance: state.balance - 5000,
+          isLoanRequested: false,
+        };
       }
       return { ...state };
     default:
@@ -52,7 +70,7 @@ function reducer(state, action) {
 }
 
 export default function App() {
-  const [{ balance, loan, isActive }, dispatch] = useReducer(
+  const [{ balance, loan, isActive, isLoanRequested }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -70,6 +88,16 @@ export default function App() {
   function handleWithdraw() {
     console.log("withdraw");
     dispatch({ type: "withdraw" });
+  }
+
+  function handleRequestLoan() {
+    console.log("requestLoan");
+    dispatch({ type: "requestLoan" });
+  }
+
+  function handlePayLoan() {
+    console.log("requestLoan");
+    dispatch({ type: "payLoan" });
   }
 
   return (
@@ -94,12 +122,12 @@ export default function App() {
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={!isActive}>
+        <button onClick={handleRequestLoan} disabled={!isActive}>
           Request a loan of 5000
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={!isActive}>
+        <button onClick={handlePayLoan} disabled={!isActive}>
           Pay loan
         </button>
       </p>
