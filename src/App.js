@@ -64,6 +64,11 @@ function reducer(state, action) {
         };
       }
       return { ...state };
+    case "closeAccount":
+      if (state.isLoanRequested || state.balance > 0) {
+        return { ...state };
+      }
+      return { ...initialState };
     default:
       throw new Error("Action is unknown");
   }
@@ -98,6 +103,10 @@ export default function App() {
   function handlePayLoan() {
     console.log("requestLoan");
     dispatch({ type: "payLoan" });
+  }
+  function handleCloseAccount() {
+    console.log("closeAccount");
+    dispatch({ type: "closeAccount" });
   }
 
   return (
@@ -138,7 +147,10 @@ export default function App() {
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={!isActive}>
+        <button
+          onClick={handleCloseAccount}
+          disabled={balance > 0 || !isActive}
+        >
           Close account
         </button>
       </p>
