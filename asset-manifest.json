@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/React-bank-acc-challenge/static/css/main.fc5c2c69.css",
+    "main.js": "/React-bank-acc-challenge/static/js/main.5469c7bd.js",
+    "index.html": "/React-bank-acc-challenge/index.html",
+    "main.fc5c2c69.css.map": "/React-bank-acc-challenge/static/css/main.fc5c2c69.css.map",
+    "main.5469c7bd.js.map": "/React-bank-acc-challenge/static/js/main.5469c7bd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc5c2c69.css",
+    "static/js/main.5469c7bd.js"
+  ]
+}
