@@ -81,31 +81,25 @@ export default function App() {
   );
 
   function handleOpenAccount() {
-    console.log("open account");
     dispatch({ type: "openAccount" });
   }
 
   function handleDeposit() {
-    console.log("deposit");
     dispatch({ type: "deposit" });
   }
 
   function handleWithdraw() {
-    console.log("withdraw");
     dispatch({ type: "withdraw" });
   }
 
   function handleRequestLoan() {
-    console.log("requestLoan");
     dispatch({ type: "requestLoan" });
   }
 
   function handlePayLoan() {
-    console.log("requestLoan");
     dispatch({ type: "payLoan" });
   }
   function handleCloseAccount() {
-    console.log("closeAccount");
     dispatch({ type: "closeAccount" });
   }
 
