@@ -1,4 +1,5 @@
 import "./styles.css";
+import { useReducer } from "react";
 
 /*
 INSTRUCTIONS / CONSIDERATIONS:
@@ -16,6 +17,13 @@ INSTRUCTIONS / CONSIDERATIONS:
 6. When the customer pays the loan, the opposite happens: the money is taken from the balance, and the 'loan' will get back to 0. This can lead to negative balances, but that's no problem, because the customer can't close their account now (see next point)
 
 7. Customer can only close an account if there is no loan, AND if the balance is zero. If this condition is not met, just return the state. If the condition is met, the account is deactivated and all money is withdrawn. The account basically gets back to the initial state
+
+Add'l notes:
+- only action to open account
+- on open credit 500 
+- all different actions
+- One active loan at a time
+- close account no loan and balance is 0
 */
 
 const initialState = {
@@ -24,7 +32,20 @@ const initialState = {
   isActive: false,
 };
 
+function reducer(state, action) {
+  switch (action.type) {
+    case "openAccount":
+      return { ...state, balance: 500 };
+    default:
+      throw new Error("Action is unknown");
+  }
+}
+
 export default function App() {
+  const [{ balance, loan, isActive }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
   return (
     <div className="App">
       <h1>useReducer Bank Account</h1>
