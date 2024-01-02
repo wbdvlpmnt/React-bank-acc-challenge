@@ -41,6 +41,11 @@ function reducer(state, action) {
       return { ...state, balance: 500, isActive: true };
     case "deposit":
       return { ...state, balance: state.balance + 150 };
+    case "withdraw":
+      if (state.balance > 0) {
+        return { ...state, balance: state.balance - 50 };
+      }
+      return { ...state };
     default:
       throw new Error("Action is unknown");
   }
@@ -62,6 +67,11 @@ export default function App() {
     dispatch({ type: "deposit" });
   }
 
+  function handleWithdraw() {
+    console.log("withdraw");
+    dispatch({ type: "withdraw" });
+  }
+
   return (
     <div className="App">
       <h1>useReducer Bank Account</h1>
@@ -79,7 +89,7 @@ export default function App() {
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={!isActive}>
+        <button onClick={handleWithdraw} disabled={!isActive}>
           Withdraw 50
         </button>
       </p>
